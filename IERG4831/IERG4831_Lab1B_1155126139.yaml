@@ -1,0 +1,1562 @@
+lab:
+  description: ''
+  notes: ''
+  title: IERG4831_Lab1B_1155126139
+  version: 0.1.0
+links:
+  - id: l0
+    n1: n0
+    n2: n1
+    i1: i0
+    i2: i3
+    label: Server-eth0<->SW_C-GigabitEthernet0/2
+  - id: l1
+    n1: n1
+    n2: n2
+    i1: i1
+    i2: i3
+    label: SW_C-GigabitEthernet0/0<->SW_DL1-GigabitEthernet0/2
+  - id: l2
+    n1: n2
+    n2: n3
+    i1: i1
+    i2: i1
+    label: SW_DL1-GigabitEthernet0/0<->SW_AL11-GigabitEthernet0/0
+  - id: l3
+    n1: n2
+    n2: n4
+    i1: i2
+    i2: i1
+    label: SW_DL1-GigabitEthernet0/1<->SW_AL12-GigabitEthernet0/0
+  - id: l4
+    n1: n3
+    n2: n6
+    i1: i2
+    i2: i0
+    label: SW_AL11-GigabitEthernet0/1<->PC11A-eth0
+  - id: l5
+    n1: n3
+    n2: n7
+    i1: i3
+    i2: i0
+    label: SW_AL11-GigabitEthernet0/2<->PC11B-eth0
+  - id: l6
+    n1: n4
+    n2: n8
+    i1: i2
+    i2: i0
+    label: SW_AL12-GigabitEthernet0/1<->PC12A-eth0
+  - id: l7
+    n1: n4
+    n2: n10
+    i1: i3
+    i2: i0
+    label: SW_AL12-GigabitEthernet0/2<->PC12B-eth0
+  - id: l8
+    n1: n1
+    n2: n5
+    i1: i2
+    i2: i3
+    label: SW_C-GigabitEthernet0/1<->SW_DL2-GigabitEthernet0/2
+  - id: l9
+    n1: n5
+    n2: n9
+    i1: i1
+    i2: i1
+    label: SW_DL2-GigabitEthernet0/0<->SW_AL21-GigabitEthernet0/0
+  - id: l10
+    n1: n9
+    n2: n12
+    i1: i2
+    i2: i0
+    label: SW_AL21-GigabitEthernet0/1<->PC21A-eth0
+  - id: l11
+    n1: n9
+    n2: n13
+    i1: i3
+    i2: i0
+    label: SW_AL21-GigabitEthernet0/2<->PC21B-eth0
+  - id: l12
+    n1: n11
+    n2: n15
+    i1: i4
+    i2: i0
+    label: SW_AL22-GigabitEthernet0/3<->PC220A-eth0
+  - id: l13
+    n1: n11
+    n2: n14
+    i1: i3
+    i2: i0
+    label: SW_AL22-GigabitEthernet0/2<->PC22B-eth0
+  - id: l14
+    n1: n9
+    n2: n16
+    i1: i4
+    i2: i0
+    label: SW_AL21-GigabitEthernet0/3<->PC210A-eth0
+  - id: l15
+    n1: n17
+    n2: n11
+    i1: i0
+    i2: i2
+    label: PC22A-eth0<->SW_AL22-GigabitEthernet0/1
+  - id: l16
+    n1: n5
+    n2: n11
+    i1: i2
+    i2: i1
+    label: SW_DL2-GigabitEthernet0/1<->SW_AL22-GigabitEthernet0/0
+  - id: l17
+    n1: n0
+    n2: n1
+    i1: i1
+    i2: i4
+    label: Server-eth1<->SW_C-GigabitEthernet0/3
+nodes:
+  - boot_disk_size: 16
+    configuration: |-
+      # this is a shell script which will be sourced at boot
+      hostname Server
+      # configurable user account
+      USERNAME=cisco
+      PASSWORD=cisco
+      # no password for tc user by default
+      TC_PASSWORD=
+      vconfig add eth0 63
+      ifconfig eth0 10.63.1.222 netmask 255.255.255.0 broadcast 10.63.1.255
+      vconfig add eth1 19
+      ifconfig eth1 10.19.1.222 netmask 255.255.255.0 broadcast 10.19.1.255
+    cpu_limit: 100
+    cpus: 1
+    data_volume: 0
+    hide_links: false
+    id: n0
+    label: Server
+    node_definition: server
+    ram: 128
+    tags: []
+    x: 238
+    y: 317
+    interfaces:
+      - id: i0
+        label: eth0
+        slot: 0
+        type: physical
+      - id: i1
+        label: eth1
+        slot: 1
+        type: physical
+  - boot_disk_size: 0
+    configuration: |-
+      Building configuration...
+
+      Current configuration : 3120 bytes
+      !
+      ! Last configuration change at 17:47:04 UTC Sun Feb 5 2023
+      !
+      version 15.2
+      service timestamps debug datetime msec
+      service timestamps log datetime msec
+      no service password-encryption
+      service compress-config
+      !
+      hostname SW_C
+      !
+      boot-start-marker
+      boot-end-marker
+      !
+      !
+      no logging console
+      !
+      no aaa new-model
+      !
+      !
+      !
+      !
+      !
+      vtp mode transparent
+      !
+      !
+      !
+      ip cef
+      no ipv6 cef
+      !
+      !
+      !
+      spanning-tree mode pvst
+      spanning-tree extend system-id
+      !
+      !
+      vlan 19
+      !
+      vlan 63
+        private-vlan primary
+        private-vlan association 163,263
+      !
+      vlan 163
+        private-vlan community
+      !
+      vlan 263
+        private-vlan isolated
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      interface GigabitEthernet0/0
+       switchport trunk encapsulation dot1q
+       switchport mode trunk
+       negotiation auto
+      !
+      interface GigabitEthernet0/1
+       switchport trunk encapsulation dot1q
+       switchport mode trunk
+       negotiation auto
+      !
+      interface GigabitEthernet0/2
+       switchport trunk encapsulation dot1q
+       switchport private-vlan mapping 63 163,263
+       switchport mode private-vlan promiscuous
+       negotiation auto
+      !
+      interface GigabitEthernet0/3
+       switchport access vlan 19
+       switchport mode access
+       negotiation auto
+      !
+      ip forward-protocol nd
+      !
+      ip http server
+      ip http secure-server
+      !
+      ip ssh server algorithm encryption aes128-ctr aes192-ctr aes256-ctr
+      ip ssh client algorithm encryption aes128-ctr aes192-ctr aes256-ctr
+      !
+      !
+      !
+      !
+      !
+      !
+      control-plane
+      !
+      banner exec ^C
+      IOSv - Cisco Systems Confidential -
+
+      Supplemental End User License Restrictions
+
+      This IOSv software is provided AS-IS without warranty of any kind. Under no circumstances may this software be used separate from the Cisco Modeling Labs Software that this software was provided with, or deployed or used as part of a production environment.
+
+      By using the software, you agree to abide by the terms and conditions of the Cisco End User License Agreement at http://www.cisco.com/go/eula. Unauthorized use or distribution of this software is expressly prohibited.
+      ^C
+      banner incoming ^C
+      IOSv - Cisco Systems Confidential -
+
+      Supplemental End User License Restrictions
+
+      This IOSv software is provided AS-IS without warranty of any kind. Under no circumstances may this software be used separate from the Cisco Modeling Labs Software that this software was provided with, or deployed or used as part of a production environment.
+
+      By using the software, you agree to abide by the terms and conditions of the Cisco End User License Agreement at http://www.cisco.com/go/eula. Unauthorized use or distribution of this software is expressly prohibited.
+      ^C
+      banner login ^C
+      IOSv - Cisco Systems Confidential -
+
+      Supplemental End User License Restrictions
+
+      This IOSv software is provided AS-IS without warranty of any kind. Under no circumstances may this software be used separate from the Cisco Modeling Labs Software that this software was provided with, or deployed or used as part of a production environment.
+
+      By using the software, you agree to abide by the terms and conditions of the Cisco End User License Agreement at http://www.cisco.com/go/eula. Unauthorized use or distribution of this software is expressly prohibited.
+      ^C
+      !
+      line con 0
+       exec-timeout 0 0
+      line aux 0
+      line vty 0 4
+      !
+      !
+      end
+    cpu_limit: 100
+    cpus: 1
+    data_volume: 0
+    hide_links: false
+    id: n1
+    label: SW_C
+    node_definition: iosvl2
+    ram: 768
+    tags: []
+    x: 405
+    y: 316
+    interfaces:
+      - id: i0
+        label: Loopback0
+        type: loopback
+      - id: i1
+        label: GigabitEthernet0/0
+        slot: 0
+        type: physical
+      - id: i2
+        label: GigabitEthernet0/1
+        slot: 1
+        type: physical
+      - id: i3
+        label: GigabitEthernet0/2
+        slot: 2
+        type: physical
+      - id: i4
+        label: GigabitEthernet0/3
+        slot: 3
+        type: physical
+  - boot_disk_size: 0
+    configuration: |-
+      Building configuration...
+
+      Current configuration : 2876 bytes
+      !
+      ! Last configuration change at 16:33:32 UTC Sun Feb 5 2023
+      !
+      version 15.2
+      service timestamps debug datetime msec
+      service timestamps log datetime msec
+      no service password-encryption
+      service compress-config
+      !
+      hostname SW_DL1
+      !
+      boot-start-marker
+      boot-end-marker
+      !
+      !
+      no logging console
+      !
+      no aaa new-model
+      !
+      !
+      !
+      !
+      !
+      vtp mode transparent
+      !
+      !
+      !
+      ip cef
+      no ipv6 cef
+      !
+      !
+      !
+      spanning-tree mode pvst
+      spanning-tree extend system-id
+      !
+      !
+      vlan 19,63,263
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      interface GigabitEthernet0/0
+       switchport trunk encapsulation dot1q
+       switchport mode trunk
+       negotiation auto
+      !
+      interface GigabitEthernet0/1
+       switchport trunk encapsulation dot1q
+       switchport mode trunk
+       negotiation auto
+      !
+      interface GigabitEthernet0/2
+       switchport trunk encapsulation dot1q
+       switchport mode trunk
+       negotiation auto
+      !
+      interface GigabitEthernet0/3
+       negotiation auto
+      !
+      ip forward-protocol nd
+      !
+      ip http server
+      ip http secure-server
+      !
+      ip ssh server algorithm encryption aes128-ctr aes192-ctr aes256-ctr
+      ip ssh client algorithm encryption aes128-ctr aes192-ctr aes256-ctr
+      !
+      !
+      !
+      !
+      !
+      !
+      control-plane
+      !
+      banner exec ^C
+      IOSv - Cisco Systems Confidential -
+
+      Supplemental End User License Restrictions
+
+      This IOSv software is provided AS-IS without warranty of any kind. Under no circumstances may this software be used separate from the Cisco Modeling Labs Software that this software was provided with, or deployed or used as part of a production environment.
+
+      By using the software, you agree to abide by the terms and conditions of the Cisco End User License Agreement at http://www.cisco.com/go/eula. Unauthorized use or distribution of this software is expressly prohibited.
+      ^C
+      banner incoming ^C
+      IOSv - Cisco Systems Confidential -
+
+      Supplemental End User License Restrictions
+
+      This IOSv software is provided AS-IS without warranty of any kind. Under no circumstances may this software be used separate from the Cisco Modeling Labs Software that this software was provided with, or deployed or used as part of a production environment.
+
+      By using the software, you agree to abide by the terms and conditions of the Cisco End User License Agreement at http://www.cisco.com/go/eula. Unauthorized use or distribution of this software is expressly prohibited.
+      ^C
+      banner login ^C
+      IOSv - Cisco Systems Confidential -
+
+      Supplemental End User License Restrictions
+
+      This IOSv software is provided AS-IS without warranty of any kind. Under no circumstances may this software be used separate from the Cisco Modeling Labs Software that this software was provided with, or deployed or used as part of a production environment.
+
+      By using the software, you agree to abide by the terms and conditions of the Cisco End User License Agreement at http://www.cisco.com/go/eula. Unauthorized use or distribution of this software is expressly prohibited.
+      ^C
+      !
+      line con 0
+       exec-timeout 0 0
+      line aux 0
+      line vty 0 4
+      !
+      !
+      end
+    cpu_limit: 100
+    cpus: 1
+    data_volume: 0
+    hide_links: false
+    id: n2
+    label: SW_DL1
+    node_definition: iosvl2
+    ram: 768
+    tags: []
+    x: 405
+    y: 476
+    interfaces:
+      - id: i0
+        label: Loopback0
+        type: loopback
+      - id: i1
+        label: GigabitEthernet0/0
+        slot: 0
+        type: physical
+      - id: i2
+        label: GigabitEthernet0/1
+        slot: 1
+        type: physical
+      - id: i3
+        label: GigabitEthernet0/2
+        slot: 2
+        type: physical
+      - id: i4
+        label: GigabitEthernet0/3
+        slot: 3
+        type: physical
+  - boot_disk_size: 0
+    configuration: |-
+      Building configuration...
+
+      Current configuration : 3050 bytes
+      !
+      ! Last configuration change at 16:32:37 UTC Sun Feb 5 2023
+      !
+      version 15.2
+      service timestamps debug datetime msec
+      service timestamps log datetime msec
+      no service password-encryption
+      service compress-config
+      !
+      hostname SW_AL11
+      !
+      boot-start-marker
+      boot-end-marker
+      !
+      !
+      no logging console
+      !
+      no aaa new-model
+      !
+      !
+      !
+      !
+      !
+      vtp mode transparent
+      !
+      !
+      !
+      ip cef
+      no ipv6 cef
+      !
+      !
+      !
+      spanning-tree mode pvst
+      spanning-tree extend system-id
+      !
+      !
+      vlan 19
+      !
+      vlan 63
+        private-vlan primary
+        private-vlan association 263
+      !
+      vlan 263
+        private-vlan isolated
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      interface GigabitEthernet0/0
+       switchport trunk encapsulation dot1q
+       switchport private-vlan mapping 63 263
+       switchport mode trunk
+       negotiation auto
+      !
+      interface GigabitEthernet0/1
+       switchport access vlan 263
+       switchport private-vlan host-association 63 263
+       switchport mode private-vlan host
+       negotiation auto
+      !
+      interface GigabitEthernet0/2
+       switchport access vlan 19
+       switchport mode access
+       negotiation auto
+      !
+      interface GigabitEthernet0/3
+       negotiation auto
+      !
+      ip forward-protocol nd
+      !
+      ip http server
+      ip http secure-server
+      !
+      ip ssh server algorithm encryption aes128-ctr aes192-ctr aes256-ctr
+      ip ssh client algorithm encryption aes128-ctr aes192-ctr aes256-ctr
+      !
+      !
+      !
+      !
+      !
+      !
+      control-plane
+      !
+      banner exec ^C
+      IOSv - Cisco Systems Confidential -
+
+      Supplemental End User License Restrictions
+
+      This IOSv software is provided AS-IS without warranty of any kind. Under no circumstances may this software be used separate from the Cisco Modeling Labs Software that this software was provided with, or deployed or used as part of a production environment.
+
+      By using the software, you agree to abide by the terms and conditions of the Cisco End User License Agreement at http://www.cisco.com/go/eula. Unauthorized use or distribution of this software is expressly prohibited.
+      ^C
+      banner incoming ^C
+      IOSv - Cisco Systems Confidential -
+
+      Supplemental End User License Restrictions
+
+      This IOSv software is provided AS-IS without warranty of any kind. Under no circumstances may this software be used separate from the Cisco Modeling Labs Software that this software was provided with, or deployed or used as part of a production environment.
+
+      By using the software, you agree to abide by the terms and conditions of the Cisco End User License Agreement at http://www.cisco.com/go/eula. Unauthorized use or distribution of this software is expressly prohibited.
+      ^C
+      banner login ^C
+      IOSv - Cisco Systems Confidential -
+
+      Supplemental End User License Restrictions
+
+      This IOSv software is provided AS-IS without warranty of any kind. Under no circumstances may this software be used separate from the Cisco Modeling Labs Software that this software was provided with, or deployed or used as part of a production environment.
+
+      By using the software, you agree to abide by the terms and conditions of the Cisco End User License Agreement at http://www.cisco.com/go/eula. Unauthorized use or distribution of this software is expressly prohibited.
+      ^C
+      !
+      line con 0
+       exec-timeout 0 0
+      line aux 0
+      line vty 0 4
+      !
+      !
+      end
+    cpu_limit: 100
+    cpus: 1
+    data_volume: 0
+    hide_links: false
+    id: n3
+    label: SW_AL11
+    node_definition: iosvl2
+    ram: 768
+    tags: []
+    x: 243
+    y: 618
+    interfaces:
+      - id: i0
+        label: Loopback0
+        type: loopback
+      - id: i1
+        label: GigabitEthernet0/0
+        slot: 0
+        type: physical
+      - id: i2
+        label: GigabitEthernet0/1
+        slot: 1
+        type: physical
+      - id: i3
+        label: GigabitEthernet0/2
+        slot: 2
+        type: physical
+      - id: i4
+        label: GigabitEthernet0/3
+        slot: 3
+        type: physical
+  - boot_disk_size: 0
+    configuration: |-
+      Building configuration...
+
+      Current configuration : 3050 bytes
+      !
+      ! Last configuration change at 16:35:08 UTC Sun Feb 5 2023
+      !
+      version 15.2
+      service timestamps debug datetime msec
+      service timestamps log datetime msec
+      no service password-encryption
+      service compress-config
+      !
+      hostname SW_AL12
+      !
+      boot-start-marker
+      boot-end-marker
+      !
+      !
+      no logging console
+      !
+      no aaa new-model
+      !
+      !
+      !
+      !
+      !
+      vtp mode transparent
+      !
+      !
+      !
+      ip cef
+      no ipv6 cef
+      !
+      !
+      !
+      spanning-tree mode pvst
+      spanning-tree extend system-id
+      !
+      !
+      vlan 19
+      !
+      vlan 63
+        private-vlan primary
+        private-vlan association 263
+      !
+      vlan 263
+        private-vlan isolated
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      interface GigabitEthernet0/0
+       switchport trunk encapsulation dot1q
+       switchport private-vlan mapping 63 263
+       switchport mode trunk
+       negotiation auto
+      !
+      interface GigabitEthernet0/1
+       switchport access vlan 263
+       switchport private-vlan host-association 63 263
+       switchport mode private-vlan host
+       negotiation auto
+      !
+      interface GigabitEthernet0/2
+       switchport access vlan 19
+       switchport mode access
+       negotiation auto
+      !
+      interface GigabitEthernet0/3
+       negotiation auto
+      !
+      ip forward-protocol nd
+      !
+      ip http server
+      ip http secure-server
+      !
+      ip ssh server algorithm encryption aes128-ctr aes192-ctr aes256-ctr
+      ip ssh client algorithm encryption aes128-ctr aes192-ctr aes256-ctr
+      !
+      !
+      !
+      !
+      !
+      !
+      control-plane
+      !
+      banner exec ^C
+      IOSv - Cisco Systems Confidential -
+
+      Supplemental End User License Restrictions
+
+      This IOSv software is provided AS-IS without warranty of any kind. Under no circumstances may this software be used separate from the Cisco Modeling Labs Software that this software was provided with, or deployed or used as part of a production environment.
+
+      By using the software, you agree to abide by the terms and conditions of the Cisco End User License Agreement at http://www.cisco.com/go/eula. Unauthorized use or distribution of this software is expressly prohibited.
+      ^C
+      banner incoming ^C
+      IOSv - Cisco Systems Confidential -
+
+      Supplemental End User License Restrictions
+
+      This IOSv software is provided AS-IS without warranty of any kind. Under no circumstances may this software be used separate from the Cisco Modeling Labs Software that this software was provided with, or deployed or used as part of a production environment.
+
+      By using the software, you agree to abide by the terms and conditions of the Cisco End User License Agreement at http://www.cisco.com/go/eula. Unauthorized use or distribution of this software is expressly prohibited.
+      ^C
+      banner login ^C
+      IOSv - Cisco Systems Confidential -
+
+      Supplemental End User License Restrictions
+
+      This IOSv software is provided AS-IS without warranty of any kind. Under no circumstances may this software be used separate from the Cisco Modeling Labs Software that this software was provided with, or deployed or used as part of a production environment.
+
+      By using the software, you agree to abide by the terms and conditions of the Cisco End User License Agreement at http://www.cisco.com/go/eula. Unauthorized use or distribution of this software is expressly prohibited.
+      ^C
+      !
+      line con 0
+       exec-timeout 0 0
+      line aux 0
+      line vty 0 4
+      !
+      !
+      end
+    cpu_limit: 100
+    cpus: 1
+    data_volume: 0
+    hide_links: false
+    id: n4
+    label: SW_AL12
+    node_definition: iosvl2
+    ram: 768
+    tags: []
+    x: 508
+    y: 640
+    interfaces:
+      - id: i0
+        label: Loopback0
+        type: loopback
+      - id: i1
+        label: GigabitEthernet0/0
+        slot: 0
+        type: physical
+      - id: i2
+        label: GigabitEthernet0/1
+        slot: 1
+        type: physical
+      - id: i3
+        label: GigabitEthernet0/2
+        slot: 2
+        type: physical
+      - id: i4
+        label: GigabitEthernet0/3
+        slot: 3
+        type: physical
+  - boot_disk_size: 0
+    configuration: |-
+      Building configuration...
+
+      Current configuration : 2819 bytes
+      !
+      ! Last configuration change at 17:40:52 UTC Sun Feb 5 2023
+      !
+      version 15.2
+      service timestamps debug datetime msec
+      service timestamps log datetime msec
+      no service password-encryption
+      service compress-config
+      !
+      hostname SW_DL2
+      !
+      boot-start-marker
+      boot-end-marker
+      !
+      !
+      no logging console
+      !
+      no aaa new-model
+      !
+      !
+      !
+      !
+      !
+      vtp mode transparent
+      !
+      !
+      !
+      ip cef
+      no ipv6 cef
+      !
+      !
+      !
+      spanning-tree mode pvst
+      spanning-tree extend system-id
+      !
+      !
+      vlan 19,63,163,263
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      interface GigabitEthernet0/0
+       switchport trunk encapsulation dot1q
+       switchport mode trunk
+       negotiation auto
+      !
+      interface GigabitEthernet0/1
+       switchport trunk encapsulation dot1q
+       switchport mode trunk
+       negotiation auto
+      !
+      interface GigabitEthernet0/2
+       negotiation auto
+      !
+      interface GigabitEthernet0/3
+       negotiation auto
+      !
+      ip forward-protocol nd
+      !
+      ip http server
+      ip http secure-server
+      !
+      ip ssh server algorithm encryption aes128-ctr aes192-ctr aes256-ctr
+      ip ssh client algorithm encryption aes128-ctr aes192-ctr aes256-ctr
+      !
+      !
+      !
+      !
+      !
+      !
+      control-plane
+      !
+      banner exec ^C
+      IOSv - Cisco Systems Confidential -
+
+      Supplemental End User License Restrictions
+
+      This IOSv software is provided AS-IS without warranty of any kind. Under no circumstances may this software be used separate from the Cisco Modeling Labs Software that this software was provided with, or deployed or used as part of a production environment.
+
+      By using the software, you agree to abide by the terms and conditions of the Cisco End User License Agreement at http://www.cisco.com/go/eula. Unauthorized use or distribution of this software is expressly prohibited.
+      ^C
+      banner incoming ^C
+      IOSv - Cisco Systems Confidential -
+
+      Supplemental End User License Restrictions
+
+      This IOSv software is provided AS-IS without warranty of any kind. Under no circumstances may this software be used separate from the Cisco Modeling Labs Software that this software was provided with, or deployed or used as part of a production environment.
+
+      By using the software, you agree to abide by the terms and conditions of the Cisco End User License Agreement at http://www.cisco.com/go/eula. Unauthorized use or distribution of this software is expressly prohibited.
+      ^C
+      banner login ^C
+      IOSv - Cisco Systems Confidential -
+
+      Supplemental End User License Restrictions
+
+      This IOSv software is provided AS-IS without warranty of any kind. Under no circumstances may this software be used separate from the Cisco Modeling Labs Software that this software was provided with, or deployed or used as part of a production environment.
+
+      By using the software, you agree to abide by the terms and conditions of the Cisco End User License Agreement at http://www.cisco.com/go/eula. Unauthorized use or distribution of this software is expressly prohibited.
+      ^C
+      !
+      line con 0
+       exec-timeout 0 0
+      line aux 0
+      line vty 0 4
+      !
+      !
+      end
+    cpu_limit: 100
+    cpus: 1
+    data_volume: 0
+    hide_links: false
+    id: n5
+    label: SW_DL2
+    node_definition: iosvl2
+    ram: 768
+    tags: []
+    x: 826
+    y: 436
+    interfaces:
+      - id: i0
+        label: Loopback0
+        type: loopback
+      - id: i1
+        label: GigabitEthernet0/0
+        slot: 0
+        type: physical
+      - id: i2
+        label: GigabitEthernet0/1
+        slot: 1
+        type: physical
+      - id: i3
+        label: GigabitEthernet0/2
+        slot: 2
+        type: physical
+      - id: i4
+        label: GigabitEthernet0/3
+        slot: 3
+        type: physical
+  - boot_disk_size: 16
+    configuration: |-
+      # this is a shell script which will be sourced at boot
+      hostname PC11A
+      # configurable user account
+      USERNAME=cisco
+      PASSWORD=cisco
+      # no password for tc user by default
+      TC_PASSWORD=
+      ifconfig eth0 10.63.1.1 netmask 255.255.255.0 up
+      route add -net 10.63.1.0/24 dev eth0
+    cpu_limit: 100
+    cpus: 1
+    data_volume: 0
+    hide_links: false
+    id: n6
+    label: PC11A
+    node_definition: server
+    ram: 128
+    tags: []
+    x: 142
+    y: 781
+    interfaces:
+      - id: i0
+        label: eth0
+        slot: 0
+        type: physical
+  - boot_disk_size: 16
+    configuration: |-
+      # this is a shell script which will be sourced at boot
+      hostname PC11B
+      # configurable user account
+      USERNAME=cisco
+      PASSWORD=cisco
+      # no password for tc user by default
+      TC_PASSWORD=
+      ifconfig eth0 10.19.1.1 netmask 255.255.255.0 up
+      route add -net 10.19.1.0/24 dev eth0
+    cpu_limit: 100
+    cpus: 1
+    data_volume: 0
+    hide_links: false
+    id: n7
+    label: PC11B
+    node_definition: server
+    ram: 128
+    tags: []
+    x: 333
+    y: 777
+    interfaces:
+      - id: i0
+        label: eth0
+        slot: 0
+        type: physical
+  - boot_disk_size: 16
+    configuration: |-
+      # this is a shell script which will be sourced at boot
+      hostname PC12A
+      # configurable user account
+      USERNAME=cisco
+      PASSWORD=cisco
+      # no password for tc user by default
+      TC_PASSWORD=
+      ifconfig eth0 10.63.1.2 netmask 255.255.255.0 up
+      route add -net 10.63.1.0/24 dev eth0
+    cpu_limit: 100
+    cpus: 1
+    data_volume: 0
+    hide_links: false
+    id: n8
+    label: PC12A
+    node_definition: server
+    ram: 128
+    tags: []
+    x: 428
+    y: 778
+    interfaces:
+      - id: i0
+        label: eth0
+        slot: 0
+        type: physical
+  - boot_disk_size: 0
+    configuration: |-
+      Building configuration...
+
+      Current configuration : 3206 bytes
+      !
+      ! Last configuration change at 17:42:59 UTC Sun Feb 5 2023
+      !
+      version 15.2
+      service timestamps debug datetime msec
+      service timestamps log datetime msec
+      no service password-encryption
+      service compress-config
+      !
+      hostname SW_AL21
+      !
+      boot-start-marker
+      boot-end-marker
+      !
+      !
+      no logging console
+      !
+      no aaa new-model
+      !
+      !
+      !
+      !
+      !
+      vtp mode transparent
+      !
+      !
+      !
+      ip cef
+      no ipv6 cef
+      !
+      !
+      !
+      spanning-tree mode pvst
+      spanning-tree extend system-id
+      !
+      !
+      vlan 19
+      !
+      vlan 63
+        private-vlan primary
+        private-vlan association 163,263
+      !
+      vlan 163
+        private-vlan community
+      !
+      vlan 263
+        private-vlan isolated
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      interface GigabitEthernet0/0
+       switchport trunk encapsulation dot1q
+       switchport private-vlan mapping 63 163,263
+       switchport mode trunk
+       negotiation auto
+      !
+      interface GigabitEthernet0/1
+       switchport access vlan 263
+       switchport private-vlan host-association 63 263
+       switchport mode private-vlan host
+       negotiation auto
+      !
+      interface GigabitEthernet0/2
+       switchport access vlan 19
+       switchport mode access
+       negotiation auto
+      !
+      interface GigabitEthernet0/3
+       switchport access vlan 163
+       switchport private-vlan host-association 63 163
+       switchport mode private-vlan host
+       negotiation auto
+      !
+      ip forward-protocol nd
+      !
+      ip http server
+      ip http secure-server
+      !
+      ip ssh server algorithm encryption aes128-ctr aes192-ctr aes256-ctr
+      ip ssh client algorithm encryption aes128-ctr aes192-ctr aes256-ctr
+      !
+      !
+      !
+      !
+      !
+      !
+      control-plane
+      !
+      banner exec ^C
+      IOSv - Cisco Systems Confidential -
+
+      Supplemental End User License Restrictions
+
+      This IOSv software is provided AS-IS without warranty of any kind. Under no circumstances may this software be used separate from the Cisco Modeling Labs Software that this software was provided with, or deployed or used as part of a production environment.
+
+      By using the software, you agree to abide by the terms and conditions of the Cisco End User License Agreement at http://www.cisco.com/go/eula. Unauthorized use or distribution of this software is expressly prohibited.
+      ^C
+      banner incoming ^C
+      IOSv - Cisco Systems Confidential -
+
+      Supplemental End User License Restrictions
+
+      This IOSv software is provided AS-IS without warranty of any kind. Under no circumstances may this software be used separate from the Cisco Modeling Labs Software that this software was provided with, or deployed or used as part of a production environment.
+
+      By using the software, you agree to abide by the terms and conditions of the Cisco End User License Agreement at http://www.cisco.com/go/eula. Unauthorized use or distribution of this software is expressly prohibited.
+      ^C
+      banner login ^C
+      IOSv - Cisco Systems Confidential -
+
+      Supplemental End User License Restrictions
+
+      This IOSv software is provided AS-IS without warranty of any kind. Under no circumstances may this software be used separate from the Cisco Modeling Labs Software that this software was provided with, or deployed or used as part of a production environment.
+
+      By using the software, you agree to abide by the terms and conditions of the Cisco End User License Agreement at http://www.cisco.com/go/eula. Unauthorized use or distribution of this software is expressly prohibited.
+      ^C
+      !
+      line con 0
+       exec-timeout 0 0
+      line aux 0
+      line vty 0 4
+      !
+      !
+      end
+    cpu_limit: 100
+    cpus: 1
+    data_volume: 0
+    hide_links: false
+    id: n9
+    label: SW_AL21
+    node_definition: iosvl2
+    ram: 768
+    tags: []
+    x: 739
+    y: 612
+    interfaces:
+      - id: i0
+        label: Loopback0
+        type: loopback
+      - id: i1
+        label: GigabitEthernet0/0
+        slot: 0
+        type: physical
+      - id: i2
+        label: GigabitEthernet0/1
+        slot: 1
+        type: physical
+      - id: i3
+        label: GigabitEthernet0/2
+        slot: 2
+        type: physical
+      - id: i4
+        label: GigabitEthernet0/3
+        slot: 3
+        type: physical
+  - boot_disk_size: 16
+    configuration: |-
+      # this is a shell script which will be sourced at boot
+      hostname PC12B
+      # configurable user account
+      USERNAME=cisco
+      PASSWORD=cisco
+      # no password for tc user by default
+      TC_PASSWORD=
+      ifconfig eth0 10.19.1.2 netmask 255.255.255.0 up
+      route add -net 10.19.1.0/24 dev eth0
+    cpu_limit: 100
+    cpus: 1
+    data_volume: 0
+    hide_links: false
+    id: n10
+    label: PC12B
+    node_definition: server
+    ram: 128
+    tags: []
+    x: 598
+    y: 779
+    interfaces:
+      - id: i0
+        label: eth0
+        slot: 0
+        type: physical
+  - boot_disk_size: 0
+    configuration: |-
+      Building configuration...
+
+      Current configuration : 3206 bytes
+      !
+      ! Last configuration change at 17:43:59 UTC Sun Feb 5 2023
+      !
+      version 15.2
+      service timestamps debug datetime msec
+      service timestamps log datetime msec
+      no service password-encryption
+      service compress-config
+      !
+      hostname SW_AL22
+      !
+      boot-start-marker
+      boot-end-marker
+      !
+      !
+      no logging console
+      !
+      no aaa new-model
+      !
+      !
+      !
+      !
+      !
+      vtp mode transparent
+      !
+      !
+      !
+      ip cef
+      no ipv6 cef
+      !
+      !
+      !
+      spanning-tree mode pvst
+      spanning-tree extend system-id
+      !
+      !
+      vlan 19
+      !
+      vlan 63
+        private-vlan primary
+        private-vlan association 163,263
+      !
+      vlan 163
+        private-vlan community
+      !
+      vlan 263
+        private-vlan isolated
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      interface GigabitEthernet0/0
+       switchport trunk encapsulation dot1q
+       switchport private-vlan mapping 63 163,263
+       switchport mode trunk
+       negotiation auto
+      !
+      interface GigabitEthernet0/1
+       switchport access vlan 263
+       switchport private-vlan host-association 63 263
+       switchport mode private-vlan host
+       negotiation auto
+      !
+      interface GigabitEthernet0/2
+       switchport access vlan 19
+       switchport mode access
+       negotiation auto
+      !
+      interface GigabitEthernet0/3
+       switchport access vlan 163
+       switchport private-vlan host-association 63 163
+       switchport mode private-vlan host
+       negotiation auto
+      !
+      ip forward-protocol nd
+      !
+      ip http server
+      ip http secure-server
+      !
+      ip ssh server algorithm encryption aes128-ctr aes192-ctr aes256-ctr
+      ip ssh client algorithm encryption aes128-ctr aes192-ctr aes256-ctr
+      !
+      !
+      !
+      !
+      !
+      !
+      control-plane
+      !
+      banner exec ^C
+      IOSv - Cisco Systems Confidential -
+
+      Supplemental End User License Restrictions
+
+      This IOSv software is provided AS-IS without warranty of any kind. Under no circumstances may this software be used separate from the Cisco Modeling Labs Software that this software was provided with, or deployed or used as part of a production environment.
+
+      By using the software, you agree to abide by the terms and conditions of the Cisco End User License Agreement at http://www.cisco.com/go/eula. Unauthorized use or distribution of this software is expressly prohibited.
+      ^C
+      banner incoming ^C
+      IOSv - Cisco Systems Confidential -
+
+      Supplemental End User License Restrictions
+
+      This IOSv software is provided AS-IS without warranty of any kind. Under no circumstances may this software be used separate from the Cisco Modeling Labs Software that this software was provided with, or deployed or used as part of a production environment.
+
+      By using the software, you agree to abide by the terms and conditions of the Cisco End User License Agreement at http://www.cisco.com/go/eula. Unauthorized use or distribution of this software is expressly prohibited.
+      ^C
+      banner login ^C
+      IOSv - Cisco Systems Confidential -
+
+      Supplemental End User License Restrictions
+
+      This IOSv software is provided AS-IS without warranty of any kind. Under no circumstances may this software be used separate from the Cisco Modeling Labs Software that this software was provided with, or deployed or used as part of a production environment.
+
+      By using the software, you agree to abide by the terms and conditions of the Cisco End User License Agreement at http://www.cisco.com/go/eula. Unauthorized use or distribution of this software is expressly prohibited.
+      ^C
+      !
+      line con 0
+       exec-timeout 0 0
+      line aux 0
+      line vty 0 4
+      !
+      !
+      end
+    cpu_limit: 100
+    cpus: 1
+    data_volume: 0
+    hide_links: false
+    id: n11
+    label: SW_AL22
+    node_definition: iosvl2
+    ram: 768
+    tags: []
+    x: 891
+    y: 606
+    interfaces:
+      - id: i0
+        label: Loopback0
+        type: loopback
+      - id: i1
+        label: GigabitEthernet0/0
+        slot: 0
+        type: physical
+      - id: i2
+        label: GigabitEthernet0/1
+        slot: 1
+        type: physical
+      - id: i3
+        label: GigabitEthernet0/2
+        slot: 2
+        type: physical
+      - id: i4
+        label: GigabitEthernet0/3
+        slot: 3
+        type: physical
+  - boot_disk_size: 16
+    configuration: |-
+      # this is a shell script which will be sourced at boot
+      hostname PC21A
+      # configurable user account
+      USERNAME=cisco
+      PASSWORD=cisco
+      # no password for tc user by default
+      TC_PASSWORD=
+      ifconfig eth0 10.63.1.3 netmask 255.255.255.0 up
+      route add -net 10.63.1.0/24 dev eth0
+    cpu_limit: 100
+    cpus: 1
+    data_volume: 0
+    hide_links: false
+    id: n12
+    label: PC21A
+    node_definition: server
+    ram: 128
+    tags: []
+    x: 670
+    y: 781
+    interfaces:
+      - id: i0
+        label: eth0
+        slot: 0
+        type: physical
+  - boot_disk_size: 16
+    configuration: |-
+      # this is a shell script which will be sourced at boot
+      hostname PC21B
+      # configurable user account
+      USERNAME=cisco
+      PASSWORD=cisco
+      # no password for tc user by default
+      TC_PASSWORD=
+      ifconfig eth0 10.19.1.3 netmask 255.255.255.0 up
+      route add -net 10.19.1.0/24 dev eth0
+    cpu_limit: 100
+    cpus: 1
+    data_volume: 0
+    hide_links: false
+    id: n13
+    label: PC21B
+    node_definition: server
+    ram: 128
+    tags: []
+    x: 787
+    y: 780
+    interfaces:
+      - id: i0
+        label: eth0
+        slot: 0
+        type: physical
+  - boot_disk_size: 16
+    configuration: |-
+      # this is a shell script which will be sourced at boot
+      hostname PC22B
+      # configurable user account
+      USERNAME=cisco
+      PASSWORD=cisco
+      # no password for tc user by default
+      TC_PASSWORD=
+      ifconfig eth0 10.19.1.4 netmask 255.255.255.0 up
+      route add -net 10.19.1.0/24 dev eth0
+    cpu_limit: 100
+    cpus: 1
+    data_volume: 0
+    hide_links: false
+    id: n14
+    label: PC22B
+    node_definition: server
+    ram: 128
+    tags: []
+    x: 955
+    y: 779
+    interfaces:
+      - id: i0
+        label: eth0
+        slot: 0
+        type: physical
+  - boot_disk_size: 16
+    configuration: |-
+      # this is a shell script which will be sourced at boot
+      hostname PC220A
+      # configurable user account
+      USERNAME=cisco
+      PASSWORD=cisco
+      # no password for tc user by default
+      TC_PASSWORD=
+      ifconfig eth0 10.63.1.6 netmask 255.255.255.0 up
+      route add -net 10.63.1.0/24 dev eth0
+    cpu_limit: 100
+    cpus: 1
+    data_volume: 0
+    hide_links: false
+    id: n15
+    label: PC220A
+    node_definition: server
+    ram: 128
+    tags: []
+    x: 1060
+    y: 611
+    interfaces:
+      - id: i0
+        label: eth0
+        slot: 0
+        type: physical
+  - boot_disk_size: 16
+    configuration: |-
+      # this is a shell script which will be sourced at boot
+      hostname PC210A
+      # configurable user account
+      USERNAME=cisco
+      PASSWORD=cisco
+      # no password for tc user by default
+      TC_PASSWORD=
+      ifconfig eth0 10.63.1.4 netmask 255.255.255.0 up
+      route add -net 10.63.1.0/24 dev eth0
+    cpu_limit: 100
+    cpus: 1
+    data_volume: 0
+    hide_links: false
+    id: n16
+    label: PC210A
+    node_definition: server
+    ram: 128
+    tags: []
+    x: 594
+    y: 562
+    interfaces:
+      - id: i0
+        label: eth0
+        slot: 0
+        type: physical
+  - boot_disk_size: 16
+    configuration: |-
+      # this is a shell script which will be sourced at boot
+      hostname PC22A
+      # configurable user account
+      USERNAME=cisco
+      PASSWORD=cisco
+      # no password for tc user by default
+      TC_PASSWORD=
+      ifconfig eth0 10.63.1.5 netmask 255.255.255.0 up
+      route add -net 10.63.1.0/24 dev eth0
+    cpu_limit: 100
+    cpus: 1
+    data_volume: 0
+    hide_links: false
+    id: n17
+    label: PC22A
+    node_definition: server
+    ram: 128
+    tags: []
+    x: 846
+    y: 778
+    interfaces:
+      - id: i0
+        label: eth0
+        slot: 0
+        type: physical
